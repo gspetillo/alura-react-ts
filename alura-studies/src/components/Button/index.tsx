@@ -1,15 +1,14 @@
-import React from 'react'
+import React from "react";
 
 class Button extends React.Component {
-
-    render(){
-        return (
-            <button>
-                Botão
-                </button>
-        )
-    }
-
+  render() {
+    const isActive = true;
+    const styles = {
+      backgroundColor: isActive ? "green" : "red",
+      color: 'white'
+    };
+    return <button style={styles}>Botão</button>;
+  }
 }
 
-export default Button
+export default Button;
