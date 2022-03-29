@@ -22,6 +22,11 @@ function App() {
   function endTask() {
     if (selected) {
       setSelected(undefined);
+      const audio = new Audio(
+        "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a"
+      );
+      audio.play();
+      setTimeout(() => audio.pause(), 1000);
       setTasks((prev) =>
         prev.map((task) => {
           if (task.id === selected.id) {
@@ -41,10 +46,7 @@ function App() {
     <div className={style.AppStyle}>
       <Form setTasks={setTasks} />
       <List tasks={tasks} selectTask={selectTask} />
-      <Cronometer 
-        selected={selected} 
-        endTask={endTask}
-      />
+      <Cronometer selected={selected} endTask={endTask} />
     </div>
   );
 }
