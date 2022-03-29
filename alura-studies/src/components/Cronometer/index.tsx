@@ -3,25 +3,41 @@ import Watch from "./Watch";
 import style from "./Cronometer.module.scss";
 import { timeToSeconds } from "../../common/utils/time";
 import { ITask } from "../../types/task";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IProps {
   selected: ITask | undefined;
+  endTask: () => void;
 }
 
-export default function Cronometer({ selected }: IProps) {
+export default function Cronometer({ selected, endTask }: IProps) {
   const [time, setTime] = useState<number>();
-  if (selected?.time) {
-    setTime(timeToSeconds(selected.time))
+
+  useEffect(() => {
+    if (selected?.time) {
+      setTime(timeToSeconds(selected.time));
+    }
+  }, [selected]);
+
+  function countdown(counter: number = 0) {
+    const timeoutId = setTimeout(() => {
+      if (counter > 0) {
+        setTime(counter - 1);
+        console.log(new Date().getMilliseconds());
+        return countdown(counter - 1);
+      }
+      clearTimeout(timeoutId);
+      endTask();
+    }, 1000);
   }
+
   return (
     <div className={style.cronometer}>
       <p className={style.title}>Escolha um card e inicie o cronômetro</p>
-      Time: {time}
       <div className={style.watchWrapper}>
-        <Watch />
+        <Watch time={time} />
       </div>
-      <Button>Começar</Button>
+      <Button onClick={() => countdown(time)}>Começar</Button>
     </div>
   );
 }
