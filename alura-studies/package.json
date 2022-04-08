@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "lint": "eslint C:/Users/gspet/OneDrive/Documentos/Cromai/Desenvolvimento/alura-react-ts/alura-studies/src/**/*.ts C:/Users/gspet/OneDrive/Documentos/Cromai/Desenvolvimento/alura-react-ts/alura-studies/src/**/*.tsx",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

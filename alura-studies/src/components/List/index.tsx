@@ -1,3 +1,4 @@
+// import React from 'react'
 import { ITask } from "../../types/task";
 import Item from "./Item";
 import style from "./List.module.scss";
@@ -22,5 +23,7 @@ function List({ tasks, selectTask }: IProps ) {
     </aside>
   );
 }
+
+
 
 export default List;
